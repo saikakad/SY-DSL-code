@@ -1,0 +1,34 @@
+def selection_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        min_index = i
+        for j in range(i + 1, n):
+            if arr[j] < arr[min_index]:
+                min_index = j
+        arr[i],arr[min_index] = arr[min_index], arr[i]
+        
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0,n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j],arr[j+1] = arr[j+1],arr[j]
+                
+#main peogram
+n = int(input("enter the number of student:"))
+scores = []
+
+for i in range(n):
+    print("enter scores of student",i + 1,":")
+    score = float(input())
+    scores.append(score)
+    
+scores_selection = scores.copy()
+selection_sort(scores_selection)
+print("\nscores sorted using selection sort:",scores_selection)
+print("\ntop 5 scores(selection sort):",scores_selection[-5:][::-1])
+
+scores_bubble = scores.copy()
+bubble_sort(scores_bubble)
+print("\nscores sort (bubble sort):",scores_bubble)
+print("\ntop 5 scores(bubble sort):",scores_bubble[-5:][::-1])
