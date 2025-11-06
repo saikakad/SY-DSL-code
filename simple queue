@@ -1,0 +1,72 @@
+#include <iostream>
+using namespace std;
+# define MAX 5
+class JobQueue{
+    private:
+    int arr[MAX];
+    int front, rear;
+    public:
+    JobQueue(){
+        front = -1;
+        rear = -1;
+    }
+    void enqueue(int Job){
+        if(rear == MAX - 1){
+            cout<<"queue overflow"<<endl;
+        }else{
+            if(front == -1)
+            front = 0;
+            arr[++rear] = Job;
+            cout<<"job"<<Job<<endl;
+        }
+    }
+    void dequeue(){
+        if (front == -1 || front > rear){
+            cout<<"queue underflow"<<endl;
+            
+        }else{
+            cout<<"job"<<arr[front]<<"deleted from queue"<<endl;
+            front++;
+        }
+    }
+        void display(){
+        if(front == -1 || front > rear){
+            cout<<"queue is empty"<<endl;
+        }else{
+            cout<<"job in queue"<<endl;
+            for(int i = front; i <= rear; i++)
+            cout<<arr[i]<<" ";
+            cout<<endl;
+        }
+        }
+};
+int main(){
+    JobQueue q;
+    int choice, Job;
+    while(true){
+        cout<<"--job queue menu--"<<endl;
+        cout<<"1.job added\n2.job deleted\n3.queue display\n4.exit program\n";
+        cout<<"enter choice:";
+        cin>>choice;
+        
+    
+    switch (choice){
+        case 1:
+        cout<<"enter job:"<<endl;
+        cin>>Job;
+        q.enqueue(Job);
+        break;
+        case 2:
+        q.dequeue();
+        break;
+        case 3:
+        q.display();
+        break;
+        case 4:
+        cout<<"exiting program!!"<<endl;
+        return 0;
+        default:
+        cout<<"invalid choice!!"<<endl;
+    }
+}
+}
