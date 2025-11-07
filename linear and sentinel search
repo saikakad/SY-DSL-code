@@ -1,0 +1,50 @@
+# ✅ Linear Search
+def linear_search(arr, key):
+    for i in range(len(arr)):
+        if arr[i] == key:
+            return i    # index found
+    return -1            # not found
+
+
+# ✅ Sentinel Search
+def sentinel_search(arr, key):
+    n = len(arr)
+    last = arr[-1]           # store last element
+    arr[-1] = key            # set sentinel
+    
+    i = 0
+    while arr[i] != key:
+        i += 1
+    
+    arr[-1] = last           # restore last element
+    
+    if i < n-1 or last == key:
+        return i             # found
+    else:
+        return -1            # not found
+
+
+# ✅ Main Program
+n = int(input("Enter number of students: "))
+scores = []
+
+for i in range(n):
+    print("Enter score of student", i + 1, ":")
+    score = float(input())
+    scores.append(score)
+
+key = float(input("\nEnter score to search: "))
+
+# ✅ Linear Search Output
+result_linear = linear_search(scores, key)
+if result_linear != -1:
+    print("\nUsing Linear Search → Score found at index:", result_linear)
+else:
+    print("\nUsing Linear Search → Score not found")
+
+# ✅ Sentinel Search Output
+result_sentinel = sentinel_search(scores.copy(), key)
+if result_sentinel != -1:
+    print("Using Sentinel Search → Score found at index:", result_sentinel)
+else:
+    print("Using Sentinel Search → Score not found")
